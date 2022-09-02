@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalhar</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <ion-label>detalhar de Contatos</ion-label>
+
+  <ion-list>
+  <ion-item>
+    <ion-label>Habilitar Edição</ion-label>
+    <ion-toggle color="sucess" 
+    (ionChange)="alterarEdicao()"></ion-toggle>
+  </ion-item>
+    <ion-item>
+      <ion-input disabled ="{{edicao}}" placeholder="Nome" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled = "{{edicao}}" placeholder="Telefone" [(ngModel)]="telefone" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select disabled ="{{edicao}}" placeholder="Selecione Genero" [(ngModel)]="Genero">
+        <ion-select-option value="Masculino">Maculino</ion-select-option>
+        <ion-select-option value="Feminino">Feminino</ion-select-option>
+        <ion-select-option value="não declarado">Não declarar</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime disabled="{{edicao}}" id="datetime" max="{{data}}"
+        presentation="date" [(ngModel)]="data_nacimento"></ion-datetime>
+          </ng-template>
+      </ion-modal>
+    </ion-item>
+  </ion-list>
+
+  <ion-button disabled ="{{edicao}}" expand="block" (click)="editar()">Salvar</ion-button>
+  <ion-button disabled ="{{edicao}}" expand="block" (click)="excluir()" color="danger">Excluir</ion-button>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" (click)="irParaHome()">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+

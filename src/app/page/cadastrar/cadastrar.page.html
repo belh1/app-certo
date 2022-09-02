@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Cadastro de Contatos</ion-label>
+  <ion-list>
+    <form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-input placeholder="Nome" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.nome.touched) || (errorControl.nome.dirty)&& errorControl.nome.errors)">
+      <span *ngIf="errorControl.nome.errors?.required">
+        Nome é Obrigatório!
+      </span>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Telefone"  formControlName ="telefone" [brmasker]="{mask:'(00)00000-0000', len:14}"></ion-input>
+    </ion-item>
+  <ion-item *ngIf="((errorControl.telefone.touched) || (errorControl.telefone.dirty)&& errorControl.telefone.errors)">
+    <span *ngIf="errorControl.telefone.errors?.required">
+      Telefone é Obrigatório!
+    </span>
+    <span *ngIf="errorControl.telefone.errors?.minlength">
+      Telefone precisa ter 10 caracteres!!
+    </span>
+  </ion-item>
+    <ion-item>
+      <ion-select placeholder="Selecione genero"  formControlName ="genero">
+        <ion-select-option value="Masculino">Maculino</ion-select-option>
+        <ion-select-option value="Feminino">Feminino</ion-select-option>
+        <ion-select-option value="não declarado">Não declarar</ion-select-option>
+      </ion-select>
+    </ion-item>
+  <ion-item *ngIf="((errorControl.genero.touched) || (errorControl.genero.dirty)&& errorControl.genero.errors)">
+    <span *ngIf="errorControl.genero.errors?.required">
+      Genero é Obrigatório!
+    </span>
+  </ion-item>
+    <ion-item>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime" max="{{data}}"
+        presentation="date"  formControlName ="data_nacimento"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+    <ion-item *ngIf="((errorControl.data_nacimento.touched) || (errorControl.data_nacimento.dirty)&& errorControl.data_nacimento.errors)">
+      <span *ngIf="errorControl.data_nacimento.errors?.required">
+        A Data de Nacimento é Obrigatório!
+      </span>
+    </ion-item>
+      <ion-button expand="block" type="submit">Cadastrar</ion-button>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color = "secondary"(click)="irParaHome()">
+          <ion-icon name="home"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </form>
+  </ion-list>
+
+
+
+
+</ion-content>
