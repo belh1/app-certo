@@ -8,19 +8,27 @@
   <ion-label>detalhar de Contatos</ion-label>
 
   <ion-list>
+    <form [formGroup]="form_detalhar" (ngSubmit)="submitForm()"></form>
   <ion-item>
     <ion-label>Habilitar Edição</ion-label>
     <ion-toggle color="sucess" 
     (ionChange)="alterarEdicao()"></ion-toggle>
   </ion-item>
     <ion-item>
-      <ion-input disabled ="{{edicao}}" placeholder="Nome" [(ngModel)]="nome"></ion-input>
+      <ion-input disabled ="{{edicao}}"  placeholder="Nome" formControlName="nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input disabled = "{{edicao}}" placeholder="Telefone" [(ngModel)]="telefone" type="number"></ion-input>
+      <ion-input disabled = "{{edicao}}" placeholder="Telefone"  formControlName ="telefone" [brmasker]="{mask:'(00)00000-0000', len:14}"></ion-input>
     </ion-item>
+    <ion-item *ngIf="((errorControl.telefone.touched) || (errorControl.telefone.dirty)&& errorControl.telefone.errors)">
+      <span *ngIf="errorControl.telefone.errors?.minlength">
+        Telefone precisa ter 10 caracteres!!
+      </span>
+    </ion-item>
+
+
     <ion-item>
-      <ion-select disabled ="{{edicao}}" placeholder="Selecione Genero" [(ngModel)]="Genero">
+      <ion-select disabled ="{{edicao}}"placeholder="Selecione genero"  formControlName ="genero">
         <ion-select-option value="Masculino">Maculino</ion-select-option>
         <ion-select-option value="Feminino">Feminino</ion-select-option>
         <ion-select-option value="não declarado">Não declarar</ion-select-option>
@@ -31,20 +39,20 @@
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
           <ion-datetime disabled="{{edicao}}" id="datetime" max="{{data}}"
-        presentation="date" [(ngModel)]="data_nacimento"></ion-datetime>
+        presentation="date" presentation="date"  formControlName ="data_nacimento"></ion-datetime>
           </ng-template>
       </ion-modal>
     </ion-item>
-  </ion-list>
 
-  <ion-button disabled ="{{edicao}}" expand="block" (click)="editar()">Salvar</ion-button>
-  <ion-button disabled ="{{edicao}}" expand="block" (click)="excluir()" color="danger">Excluir</ion-button>
+    <ion-button disabled ="{{edicao}}" expand="block" shape= "round" (click)="editar()">Salvar</ion-button>
+  <ion-button disabled ="{{edicao}}" expand="block" shape= "round" (click)="excluir()" color="danger">Excluir</ion-button>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="secondary" (click)="irParaHome()">
+    <ion-fab-button color="primary" (click)="irParaHome()">
       <ion-icon name="home"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+        </ion-fab-button>
+       </ion-fab>
+    </form>
+  </ion-list>
+
 </ion-content>
-
-
