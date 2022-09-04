@@ -1,8 +1,33 @@
 
+@import url('https://fonts.googleapis.com/css2? family= Chewy & display=swap');
 ion-title{
+    font-size: 50px;
+    background-color: #f8f6f9 ;
+    color: #6F2DBD;
+    background-size: auto;
+    font-family: 'Chewy';
     text-align: center;
-    background-color: #ec528f;
 }
-span{
-    color: red;
-}
+
+
+.list{
+    background-image: url('../img/corp.png');
+    background-position: center center;
+    background-size: cover;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    ion-item{
+        margin-top: 35px;
+        height: 48px;
+        font-size: 18px;
+        text-transform: initial;
+        border-radius: 50px;
+        box-shadow: 1px 8px 8p 0px rg(0, 0, 0, 0.5);
+        --box-shadow:none;
+    }
+    
+     
+  }
+  
+  
